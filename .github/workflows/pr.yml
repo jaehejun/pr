@@ -1,0 +1,21 @@
+name: hello-world
+
+on:
+  push:  # 코드가 push될 때 실행
+  pull_request:
+    branches:
+      - main  # feature -> main PR이 생성될 때 실행
+
+jobs:
+  push-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push Event
+        run: echo "🚀 Code was pushed!"
+
+  pr-job:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR Opened
+        run: echo "🔍 A Pull Request to main has been created!"
